@@ -9,26 +9,26 @@ class RedactorTest {
     public static final String TEST_STRING = "As programmer I like working with computers I Kyle";
 
     @Test
-    public void redactorTest() {
+    public void redactorTestCorrectDelete() {
         Redactor redactor = new Redactor();
 
-        assertEquals(EXPECTED_STRING,redactor.toRedact(TEST_STRING));
+        assertEquals(EXPECTED_STRING,redactor.deleteWordsWithSomeLetters(TEST_STRING));
     }
 
     @Test
-    public void noNecessaryLettersTest() {
+    public void noNecessaryLettersRedactTest() {
         Redactor redactor = new Redactor();
         String expectedStringWithoutNecessaryLetters = "HeRe no letteRs";
 
-        assertEquals(expectedStringWithoutNecessaryLetters,redactor.toRedact(expectedStringWithoutNecessaryLetters));
+        assertEquals(expectedStringWithoutNecessaryLetters,redactor.deleteWordsWithSomeLetters(expectedStringWithoutNecessaryLetters));
     }
 
     @Test
-    public void redactorClearStringTest() {
+    public void clearStringRedactTest() {
         Redactor redactor = new Redactor();
         String expectedString = "";
         String testString = "";
 
-        assertEquals(expectedString,redactor.toRedact(testString));
+        assertEquals(expectedString,redactor.deleteWordsWithSomeLetters(testString));
     }
 }

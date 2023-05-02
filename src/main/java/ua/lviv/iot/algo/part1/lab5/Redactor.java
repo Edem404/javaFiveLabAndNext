@@ -4,17 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Redactor {
-    public String toRedact(String string) {
-        Pattern patternForText = Pattern.compile("(\\b\\w*[AaOrK]\\w*\\b\\s*)|(\\s*\\b\\w*[AaOrK]\\w*\\b\\s*$)");
-        Matcher matcherForText = patternForText.matcher(string);
-        String result = matcherForText.replaceAll("");
+    public static final Pattern patternForWordsNeedToDelete = Pattern.compile("(\\b\\w*[AaOrK]\\w*\\b\\s*)|(\\s*\\b\\w*[AaOrK]\\w*\\b\\s*$)");
+    public String deleteWordsWithSomeLetters(String string) {
+        Matcher matcherForText = patternForWordsNeedToDelete.matcher(string);
 
-        return result;
+        return matcherForText.replaceAll("");
     }
 
     public static void main(String[] args) {
         Redactor textRedactor = new Redactor();
-        String string = "As programmer I like working with computers I Kyle";
-        System.out.println(textRedactor.toRedact(string));
+        System.out.println(textRedactor.deleteWordsWithSomeLetters(args[0]));
     }
 }
